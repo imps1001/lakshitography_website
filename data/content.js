@@ -1,112 +1,79 @@
-// Real Lakshitography images (5 client-shot photos) + a few stock fillers for
-// categories not yet represented. Swap the stock ones when more real work arrives.
+// Seed data only. Services, categories and photos are managed from the admin panel and stored
+// in MongoDB (photos on Cloudinary); these defaults are written the first time the site runs.
 
-const REAL = {
-  wedding_bride: "https://customer-assets.emergentagent.com/job_moments-home/artifacts/asow04c1_DSC03405.ARW.jpg",
-  kids_two_girls: "https://customer-assets.emergentagent.com/job_moments-home/artifacts/28jggwuz_DSC00237.jpg",
-  kid_pink_tutu: "https://customer-assets.emergentagent.com/job_moments-home/artifacts/e231pwru_DSC00275.jpg",
-  baby_boy_party: "https://customer-assets.emergentagent.com/job_moments-home/artifacts/777br5s9_DSC00005.jpg",
-  kids_celebration: "https://customer-assets.emergentagent.com/job_moments-home/artifacts/ndqimdo2_IMG_20251220_231929.jpg",
-};
-
-export const SERVICES = [
+export const DEFAULT_SERVICES = [
   {
     slug: "couple-lifestyle",
+    category: "Couples", // default category whose hero image the service card shows
     name: "Couple Lifestyle Shoot",
+    tag: "Couples",
     duration: "60–90 mins",
     photos: "20–30 edited photos",
-    price: "₹6,500 – ₹9,500",
+    price_min: 6500,
+    price_max: 9500,
     people: "Just the two of you",
-    addOn: "Optional 30-sec reel add-on",
+    add_on: "Optional 30-sec reel add-on",
     blurb:
       "Slow mornings, soft sunlight, quiet glances. A relaxed walk-through of the way you two actually exist together.",
-    image: REAL.married_couple,
   },
   {
     slug: "family-portraits",
+    category: "Families",
     name: "Family Portraits",
+    tag: "Families",
     duration: "75–120 mins",
     photos: "30–45 edited photos",
-    price: "₹8,500 – ₹12,500",
+    price_min: 8500,
+    price_max: 12500,
     people: "Small families (up to 6)",
-    addOn: "Optional family video story",
+    add_on: "Optional family video story",
     blurb:
       "Real laughter, real chaos, the kind of family photos you'll actually frame — not the stiff studio kind.",
-    image: REAL.wedding_bride,
   },
   {
     slug: "kids-birthday",
+    category: "Kids",
     name: "Kids' Birthday at Home",
+    tag: "Birthdays",
     duration: "2–3 hours",
     photos: "40–60 edited photos",
-    price: "₹9,500 – ₹14,000",
+    price_min: 9500,
+    price_max: 14000,
     people: "Up to 25 close guests",
-    addOn: "Highlight reel add-on",
+    add_on: "Highlight reel add-on",
     blurb:
       "Tiny hands on cake, the candle moment, that one cousin crying — birthdays exactly as they happen.",
-    image: REAL.kid_pink_tutu,
   },
   {
     slug: "anniversary",
+    category: "Anniversary",
     name: "Intimate Anniversary",
+    tag: "Anniversary",
     duration: "90–120 mins",
     photos: "30–40 edited photos",
-    price: "₹8,000 – ₹11,500",
+    price_min: 8000,
+    price_max: 11500,
     people: "Couple + close family",
-    addOn: "Optional cinematic clip",
+    add_on: "Optional cinematic clip",
     blurb:
       "A return to where it began, or simply the home you've built. Quiet, romantic, unhurried.",
-    image: REAL.wedding_bride,
   },
   {
     slug: "kitty-gathering",
+    category: "Gatherings",
     name: "Kitty Party / Close Gathering",
+    tag: "Gatherings",
     duration: "2 hours",
     photos: "35–50 edited photos",
-    price: "₹7,500 – ₹10,500",
+    price_min: 7500,
+    price_max: 10500,
     people: "Up to 15 friends",
-    addOn: "Group portrait set",
+    add_on: "Group portrait set",
     blurb:
       "The afternoon stretches. Tea, laughter, gossip — captured without interrupting a single moment.",
-    image: REAL.birthday_family,
   },
 ];
 
-// Hero grid (2x2) — mix of real signature shots + warm stock for missing categories
-export const HERO_IMAGES = [
-  REAL.wedding_bride,
-  REAL.kid_pink_tutu,
-  REAL.baby_boy_party,
-  REAL.kids_two_girls,
-  REAL.kids_celebration,
-  REAL.married_couple,
-  REAL.bride_entering,
-  REAL.birthday_family,
-];
-
-export const HERO_POOL = [
-  REAL.wedding_bride,
-  REAL.kid_pink_tutu,
-  REAL.baby_boy_party,
-  REAL.kids_two_girls,
-  REAL.kids_celebration,
-  REAL.married_couple,
-  REAL.bride_entering,
-  REAL.birthday_family,
-
-];
-
-export const GALLERY = [
-  { category: "Anniversary", url: REAL.wedding_bride },
-  { category: "Kids",        url: REAL.kid_pink_tutu },
-  { category: "Kids",        url: REAL.kids_two_girls },
-  { category: "Kids",        url: REAL.baby_boy_party },
-  { category: "Kids",        url: REAL.kids_celebration },
-  { category: "Couples",     url: REAL.married_couple },
-  { category: "Couples",     url: REAL.bride_entering },
-  { category: "Families",    url: REAL.birthday_family },
-];
-
-export const CATEGORIES = ["All", "Couples", "Families", "Kids", "Anniversary", "Gatherings"];
+export const DEFAULT_CATEGORIES = ["Couples", "Families", "Kids", "Anniversary", "Gatherings"];
 
 export const WHATSAPP_NUMBER = "919794747454";
