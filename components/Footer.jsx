@@ -42,8 +42,8 @@ export default function Footer() {
           <p className="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-muted">Say hi</p>
           <ul className="space-y-3 text-ink/90">
             <li>
-              <a href="mailto:hello@lakshitography.com" className="inline-flex items-center gap-3 transition-colors hover:text-butter">
-                <Mail size={16} className="text-sun" /> hello@lakshitography.com
+              <a href="mailto:lakshitography@gmail.com" className="inline-flex items-center gap-3 transition-colors hover:text-butter">
+                <Mail size={16} className="text-sun" /> lakshitography@gmail.com
               </a>
             </li>
             <li>

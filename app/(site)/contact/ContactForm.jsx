@@ -150,7 +150,7 @@ export default function ContactForm() {
 
   const contacts = [
     { href: buildWhatsAppLink(form), icon: MessageCircle, label: "WhatsApp", value: "Fastest reply", testid: "contact-whatsapp-direct", external: true, accent: "bg-mint" },
-    { href: "mailto:hello@lakshitography.com", icon: Mail, label: "Email", value: "hello@lakshitography.com", accent: "bg-lilac" },
+    { href: "mailto:lakshitography@gmail.com", icon: Mail, label: "Email", value: "lakshitography@gmail.com", accent: "bg-lilac" },
     { href: `tel:+${WHATSAPP_NUMBER}`, icon: Phone, label: "Call", value: PHONE_DISPLAY, accent: "bg-butter" },
   ];
 
