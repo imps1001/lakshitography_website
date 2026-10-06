@@ -10,11 +10,11 @@ export async function PATCH(request, { params }) {
   if (admin.error) return apiError(admin.error, admin.status);
 
   const { serviceId } = await params;
-  const { services, categories } = await serviceCollections();
+  const { services, categories, photos } = await serviceCollections();
   const existing = await findService(services, serviceId);
   if (!existing) return apiError("Service not found", 404);
 
-  const { service: update, error } = await parseService(await requestJson(request), categories, { partial: true });
+  const { service: update, error } = await parseService(await requestJson(request), categories, { partial: true, photos });
   if (error) return apiError(error);
   if (!Object.keys(update).length) return apiError("Nothing to update.");
   const rangeError = priceRangeError({ ...existing, ...update });

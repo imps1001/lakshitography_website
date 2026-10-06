@@ -15,7 +15,7 @@ import { IconButton, errorText } from "./ui";
 export default function ServicesManager() {
   const queryClient = useQueryClient();
   const { services, loading } = useServices();
-  const { categories, heroOf, coverFor } = usePortfolio();
+  const { categories, gallery, heroOf, coverFor } = usePortfolio();
   const [editing, setEditing] = useState(null); // null, "new", or a service id
 
   const refresh = () => queryClient.invalidateQueries({ queryKey: SERVICES_KEY });
@@ -100,7 +100,7 @@ export default function ServicesManager() {
                   {[s.duration, s.photos, s.people].filter(Boolean).join(" · ") || "No details yet"}
                 </p>
                 <p className="mt-1 text-xs text-muted">
-                  Image: {category ? <span className="text-ink/80">hero of {category.name}</span> : <span className="text-sun">none — pick a category</span>}
+                  Image: {s.image_photo_id && coverFor(s) ? <span className="text-ink/80">picked from gallery</span> : category ? <span className="text-ink/80">hero of {category.name}</span> : <span className="text-sun">none — pick a photo</span>}
                 </p>
               </div>
               <div className="flex shrink-0 flex-col gap-1 sm:flex-row">
@@ -121,6 +121,7 @@ export default function ServicesManager() {
           service={editingService}
           categories={categories}
           heroOf={heroOf}
+          gallery={gallery}
           onClose={() => setEditing(null)}
           onSaved={() => { refresh(); setEditing(null); }}
         />

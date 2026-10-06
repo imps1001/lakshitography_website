@@ -10,10 +10,10 @@ import { Modal, errorText } from "./ui";
 
 const BLANK = {
   name: "", tag: "", blurb: "", price_min: "", price_max: "",
-  duration: "", photos: "", people: "", add_on: "", category_id: null, visible: true,
+  duration: "", photos: "", people: "", add_on: "", category_id: null, image_photo_id: null, visible: true,
 };
 
-export default function ServiceEditor({ service, categories, heroOf, onClose, onSaved }) {
+export default function ServiceEditor({ service, categories, gallery = [], heroOf, onClose, onSaved }) {
   const [form, setForm] = useState(() => (service ? {
     ...BLANK,
     ...Object.fromEntries(Object.keys(BLANK).map((k) => [k, service[k] ?? BLANK[k]])),
@@ -32,6 +32,8 @@ export default function ServiceEditor({ service, categories, heroOf, onClose, on
   const toNumber = (value) => (value.trim() === "" ? null : Math.round(Number(value)));
   const preview = { ...form, price_min: toNumber(form.price_min), price_max: toNumber(form.price_max) };
   const category = categories.find((c) => c.id === form.category_id);
+  const picked = gallery.find((p) => p.id === form.image_photo_id);
+  const cardPhoto = picked || (category ? heroOf(category) : null);
 
   const save = async (e) => {
     e.preventDefault();
@@ -90,14 +92,39 @@ export default function ServiceEditor({ service, categories, heroOf, onClose, on
             <Field label="Add-on"><input maxLength={80} value={form.add_on} onChange={set("add_on")} placeholder="Optional 30-sec reel" className="input !py-2.5" /></Field>
           </div>
 
-          <Field label="Card image" className="mt-4" hint="The card uses this category's hero image — change the hero in the Portfolio tab">
+          <Field label="Card image" className="mt-4" hint="Pick a photo from the website gallery">
+            <div className="grid max-h-56 grid-cols-4 gap-2 overflow-y-auto rounded-2xl border border-line p-2 sm:grid-cols-5" data-testid="service-image-picker">
+              <button
+                type="button"
+                onClick={() => setForm((f) => ({ ...f, image_photo_id: null }))}
+                aria-pressed={!form.image_photo_id}
+                className={`flex aspect-square items-center justify-center rounded-xl border p-1 text-center text-[11px] font-semibold leading-tight ${!form.image_photo_id ? "border-sun text-sun" : "border-line text-muted"}`}
+              >
+                Category hero
+              </button>
+              {gallery.map((p) => (
+                <button
+                  key={p.id}
+                  type="button"
+                  onClick={() => setForm((f) => ({ ...f, image_photo_id: p.id }))}
+                  aria-pressed={form.image_photo_id === p.id}
+                  aria-label={p.alt || "Gallery photo"}
+                  className={`relative aspect-square overflow-hidden rounded-xl border-2 ${form.image_photo_id === p.id ? "border-sun" : "border-transparent"}`}
+                >
+                  <PortfolioImage photo={p} width={200} className="h-full w-full object-cover" />
+                </button>
+              ))}
+            </div>
+          </Field>
+
+          <Field label="Category" className="mt-4" hint="Used when no gallery photo is picked">
             <select
               value={form.category_id || ""}
               onChange={(e) => setForm((f) => ({ ...f, category_id: e.target.value || null }))}
               className="input !py-2.5"
               data-testid="service-category"
             >
-              <option value="">No image</option>
+              <option value="">No category</option>
               {categories.map((c) => <option key={c.id} value={c.id}>Hero of “{c.name}”</option>)}
             </select>
           </Field>
@@ -137,7 +164,7 @@ export default function ServiceEditor({ service, categories, heroOf, onClose, on
             </button>
           </div>
           <div className="relative mx-auto mt-4 aspect-[2/3] w-full max-w-[16rem] overflow-hidden rounded-[1.75rem] bg-surface">
-            <PortfolioImage photo={category ? heroOf(category) : null} width={600} className="absolute inset-0 h-full w-full object-cover" />
+            <PortfolioImage photo={cardPhoto} width={600} className="absolute inset-0 h-full w-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-black/20" />
             <div className="absolute inset-x-3 top-3 flex flex-wrap items-start justify-between gap-1.5">
               <span className="rounded-full bg-bg/60 px-2.5 py-1 text-[11px] font-semibold backdrop-blur-md">{form.name || "Service"}</span>

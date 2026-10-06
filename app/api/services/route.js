@@ -18,8 +18,8 @@ export async function POST(request) {
   const admin = await getAdminFromRequest(request);
   if (admin.error) return apiError(admin.error, admin.status);
 
-  const { services, categories } = await serviceCollections();
-  const { service: fields, error } = await parseService(await requestJson(request), categories);
+  const { services, categories, photos } = await serviceCollections();
+  const { service: fields, error } = await parseService(await requestJson(request), categories, { photos });
   if (error) return apiError(error);
   const rangeError = priceRangeError(fields);
   if (rangeError) return apiError(rangeError);
