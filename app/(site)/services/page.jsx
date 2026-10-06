@@ -72,7 +72,7 @@ export default function Services() {
                   className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
                 <span className="absolute left-4 top-4 rounded-full bg-bg/60 px-3 py-1.5 text-xs font-semibold backdrop-blur-md">
-                  {s.tag}
+                  {s.tag || s.name}
                 </span>
               </div>
 

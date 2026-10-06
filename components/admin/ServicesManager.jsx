@@ -93,7 +93,6 @@ export default function ServicesManager() {
               <div className="min-w-0 flex-1">
                 <div className="flex flex-wrap items-center gap-2">
                   <h3 className="truncate font-display text-lg font-bold">{s.name}</h3>
-                  <span className="rounded-full bg-ink/10 px-2 py-0.5 text-[11px] font-semibold">{s.tag}</span>
                   {!s.visible && <span className="rounded-full bg-butter/20 px-2 py-0.5 text-[11px] font-semibold text-butter">Hidden</span>}
                 </div>
                 <p className="mt-1 text-sm font-semibold text-butter">{priceRange(s)}</p>

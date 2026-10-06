@@ -242,7 +242,7 @@ export function ServiceCardsStrip({ services, categories, coverFor, onSelect }) 
               <Thumb photo={coverFor(s)} className="absolute inset-0 h-full w-full" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent" />
               <div className="absolute inset-x-2 bottom-2">
-                <p className="text-xs font-semibold leading-tight text-white">{s.tag}</p>
+                <p className="text-xs font-semibold leading-tight text-white">{s.tag || s.name}</p>
                 <p className={`mt-0.5 truncate text-[10px] ${category ? "text-butter" : "text-white/60"}`}>
                   {category ? `↳ ${category.name}` : "No category"}
                 </p>

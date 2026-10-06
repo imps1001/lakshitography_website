@@ -64,12 +64,9 @@ export default function ServiceEditor({ service, categories, heroOf, onClose, on
             </button>
           </div>
 
-          <div className="mt-5 grid gap-4 sm:grid-cols-[1.6fr_1fr]">
+          <div className="mt-5 grid gap-4 sm:grid-cols-1">
             <Field label="Service name" required>
               <input required maxLength={60} value={form.name} onChange={set("name")} placeholder="e.g. Maternity Shoot" className="input !py-2.5" data-testid="service-name" />
-            </Field>
-            <Field label="Short label" required hint="Badge & booking chip">
-              <input required maxLength={24} value={form.tag} onChange={set("tag")} placeholder="e.g. Maternity" className="input !py-2.5" data-testid="service-tag" />
             </Field>
           </div>
 
@@ -79,10 +76,10 @@ export default function ServiceEditor({ service, categories, heroOf, onClose, on
 
           <div className="mt-4 grid gap-4 sm:grid-cols-2">
             <Field label="Starting price (₹)" required>
-              <input required type="number" min={0} step={100} inputMode="numeric" value={form.price_min} onChange={set("price_min")} placeholder="6500" className="input !py-2.5" data-testid="service-price-min" />
+              <input required type="number" min={1} step={1} inputMode="numeric" value={form.price_min} onChange={set("price_min")} placeholder="6500" className="input !py-2.5" data-testid="service-price-min" />
             </Field>
             <Field label="Up to (₹)" hint="Leave empty for a single price">
-              <input type="number" min={0} step={100} inputMode="numeric" value={form.price_max} onChange={set("price_max")} placeholder="9500" className="input !py-2.5" data-testid="service-price-max" />
+              <input type="number" min={1} step={1} inputMode="numeric" value={form.price_max} onChange={set("price_max")} placeholder="9500" className="input !py-2.5" data-testid="service-price-max" />
             </Field>
           </div>
 
@@ -143,7 +140,7 @@ export default function ServiceEditor({ service, categories, heroOf, onClose, on
             <PortfolioImage photo={category ? heroOf(category) : null} width={600} className="absolute inset-0 h-full w-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-black/20" />
             <div className="absolute inset-x-3 top-3 flex flex-wrap items-start justify-between gap-1.5">
-              <span className="rounded-full bg-bg/60 px-2.5 py-1 text-[11px] font-semibold backdrop-blur-md">{form.tag || "Label"}</span>
+              <span className="rounded-full bg-bg/60 px-2.5 py-1 text-[11px] font-semibold backdrop-blur-md">{form.name || "Service"}</span>
               {preview.price_min != null && !Number.isNaN(preview.price_min) && (
                 <span className="rounded-full bg-butter px-2.5 py-1 text-[11px] font-bold text-bg">from {shortPrice(preview.price_min)}</span>
               )}

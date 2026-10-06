@@ -168,7 +168,7 @@ export default function Home() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-black/20" />
                   <div className="absolute inset-x-3 top-3 flex flex-wrap items-start justify-between gap-1.5">
-                    <span className="rounded-full bg-bg/60 px-2.5 py-1 text-[11px] font-semibold text-ink backdrop-blur-md">{s.tag}</span>
+                    <span className="rounded-full bg-bg/60 px-2.5 py-1 text-[11px] font-semibold text-ink backdrop-blur-md">{s.tag || s.name}</span>
                     <span className="rounded-full bg-butter px-2.5 py-1 text-[11px] font-bold text-bg">from {shortPrice(s.price_min)}</span>
                   </div>
                   <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5">

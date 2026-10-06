@@ -263,7 +263,7 @@ export default function ContactForm() {
                         onClick={() => { update("service", s.slug); runCheck("service", s.slug); }}
                         className="chip"
                       >
-                        {s.tag}
+                        {s.tag || s.name}
                       </button>
                     ))}
                   </div>
