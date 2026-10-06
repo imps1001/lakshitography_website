@@ -25,7 +25,7 @@ export default function AdminLogin() {
     setBusy(true);
     try {
       await login(email.trim(), password);
-      toast.success("Welcome back, Lakshita.");
+      toast.success("Welcome back, Lakshit.");
       router.push("/admin");
     } catch (err) {
       toast.error(formatApiErrorDetail(err.response?.data?.detail) || "Login failed.");

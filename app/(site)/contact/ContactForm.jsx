@@ -80,7 +80,7 @@ export default function ContactForm() {
   const buildWhatsAppLink = (f) => {
     const svc = services.find((s) => s.slug === f.service)?.name || f.service || "—";
     const text =
-      `Hi Lakshita! I'd love to book a session.\n\n` +
+      `Hi Lakshit! I'd love to book a session.\n\n` +
       `• Name: ${f.name}\n` +
       `• Service: ${svc}\n` +
       `• Preferred date: ${f.preferred_date || "Flexible"}\n` +
